@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:helep2/misc/tile_provider.dart';
+import 'package:helep2/widgets/myBottonSheet.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = '/';
@@ -15,10 +15,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Alignment alignment = Alignment.topCenter;
   bool counterRotate = false;
+  final DraggableScrollableController sheetController = DraggableScrollableController();
 
   late final customMarkers = <Marker>[
-    buildPin(const LatLng(1.4680350928703532, 110.43031975451244), "Student Pavilion"),
-    buildPin(const LatLng(1.4683444570750723, 110.42992594135117), "Richiamo Coffee - Unimas"),
+    buildPin(const LatLng(1.561661487586152, 103.63228560201078), "Arked Cengal"),
+    buildPin(const LatLng(1.5597947069943472, 103.63727775040542), "He & She Coffee UTM Johor"),
   ];
 
   Marker buildPin(LatLng point, String name) => Marker(
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           onTap: () => ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(name),
-              duration: Duration(seconds: 1),
+              duration: const Duration(seconds: 1),
               showCloseIcon: true,
             ),
           ),
@@ -41,13 +42,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Helep2")),
-      body: Column(
+      body: Stack(
         children: [
           Flexible(
             child: FlutterMap(
               options: const MapOptions(
-                initialZoom: 16.0,
-                initialCenter: LatLng(1.4647977635821197, 110.43105122533005),
+                initialZoom: 15.0,
+                initialCenter: LatLng(1.560271740407464, 103.63822277818102),
                 interactionOptions: InteractionOptions(
                   enableScrollWheel: true,
                   flags: ~InteractiveFlag.doubleTapZoom,
@@ -58,9 +59,11 @@ class _HomePageState extends State<HomePage> {
                 MarkerLayer(markers: customMarkers,alignment: alignment,),
               ],
             ),
-          )
+          ), 
+          bottomSheet(),
         ],
       ),
     );
   }
 }
+
