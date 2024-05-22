@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:helep2/components/choice_chips.dart';
 import 'package:helep2/components/place_tile.dart';
 import 'package:helep2/models/place.dart';
 
@@ -13,6 +14,7 @@ class bottomSheet extends StatefulWidget {
 }
 
 class _bottomSheetState extends State<bottomSheet> {
+  int? _index;
   final _sheet = GlobalKey();
   final _controller = DraggableScrollableController();
   final TextEditingController textController = TextEditingController();
@@ -121,14 +123,9 @@ class _bottomSheetState extends State<bottomSheet> {
                       },
                     ),
                   ),
-                  //title
+                  //choice Chip
                   const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 20,
-                      )
-                    ),
+                    child: searchChips(),
                   ),
                   //list of places
                   SliverList(
