@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:helep2/models/place.dart';
 import 'package:helep2/pages/home.dart';
+import 'package:helep2/pages/place_detail_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +19,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: const Color(0xFFC1A68B),
       ),
-      home: const HomePage(),
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/' :(context) => HomePage(),
+      },
     );
   }
 }

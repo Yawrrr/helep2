@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:helep2/misc/tile_provider.dart';
-import 'package:helep2/widgets/myBottonSheet.dart';
+import 'package:helep2/widgets/bottomSheet.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = '/';
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ), 
-          bottomSheet(),
+          const bottomSheet(),
         ],
       ),
     );
