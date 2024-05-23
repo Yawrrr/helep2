@@ -1,8 +1,6 @@
 // ignore_for_file: camel_case_types, unused_element, file_names
 
-
 import 'package:flutter/material.dart';
-import 'package:helep2/components/choice_chips.dart';
 import 'package:helep2/components/place_tile.dart';
 import 'package:helep2/models/place.dart';
 
@@ -14,12 +12,21 @@ class bottomSheet extends StatefulWidget {
 }
 
 class _bottomSheetState extends State<bottomSheet> {
-  int? _index;
   final _sheet = GlobalKey();
   final _controller = DraggableScrollableController();
+  final _scrollController = ScrollController();
   final TextEditingController textController = TextEditingController();
   
-  static List<Place> _tempListofPlaces = places;
+  List<Place> tempListOfPlace = places;
+  final List<String> _filters = [
+    'Faculty',
+    'College',
+    'Entertainment',
+    'Dining',
+    'Facility',
+    'Administration'
+  ];
+  int? _index;
 
   @override
   void initState() {
@@ -86,7 +93,7 @@ class _bottomSheetState extends State<bottomSheet> {
                     child: Center(
                       child: Container(
                         decoration: const BoxDecoration(
-                          color: Color(0xFFDECDC3),
+                          color: Color(0xFF936B4F),
                           borderRadius:
                               BorderRadius.all(Radius.circular(10)),
                         ),
@@ -114,7 +121,8 @@ class _bottomSheetState extends State<bottomSheet> {
                       ),
                       onChanged: (value) {
                         setState(() {
-                          _tempListofPlaces = places
+                          _index = null;
+                          tempListOfPlace = places
                               .where((element) => element.name
                                   .toLowerCase()
                                   .contains(value.toLowerCase()))
@@ -124,18 +132,64 @@ class _bottomSheetState extends State<bottomSheet> {
                     ),
                   ),
                   //choice Chip
-                  const SliverToBoxAdapter(
-                    child: searchChips(),
+                  SliverToBoxAdapter(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List<Widget>.generate(
+                          6,
+                          (index) => Padding(
+                            padding: const EdgeInsets.only(right: 6.0, bottom: 10, top: 4),
+                            child: ChoiceChip(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              showCheckmark: false,
+                              label: Text(
+                                _filters[index],
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  height: 1,
+                                  color:
+                                      _index == index ? Colors.white : const Color(0xFF54392D),
+                                ),
+                              ),
+                              backgroundColor: const Color(0xFFF5EFEC),
+                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: -2),
+                              side: BorderSide.none,
+                              selected: _index == index,
+                              selectedColor: const Color(0xFF54392D),
+                              onSelected: (selected) {
+                                setState(() {
+                                  _index = selected ? index : null;
+                                  tempListOfPlace = places
+                                      .where((element) => element.type
+                                          .toLowerCase()
+                                          .contains(_filters[index].toLowerCase()))
+                                      .toList();
+                                  if(_index==null) tempListOfPlace = places;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   //list of places
-                  SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      Place place = _tempListofPlaces[index];
-                      return PlaceTile(place: place);
-                    },
-                    childCount: _tempListofPlaces.length,
-                  ))
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: constraints.maxHeight - 150, // Adjust height as needed
+                      child: ListView.builder(
+                        controller: _scrollController,
+                        itemCount: tempListOfPlace.length,
+                        itemBuilder: (context, index) {
+                          Place place = tempListOfPlace[index];
+                          return PlaceTile(place: place);
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
