@@ -20,7 +20,7 @@ List<Place> places = [
           'He & She Coffee UTM Johor is a place where students can buy food and drinks. It is located in Universiti Teknologi Malaysia, Johor.',
       operatingHours: '8:00 AM - 10:00 PM',
       contact: '012-3456789',
-      email: ''),
+      email: 'email@gmail.com'),
   Place(
     type: 'Dining',
     name: 'Arked Cengal',
@@ -30,13 +30,17 @@ List<Place> places = [
         'Arked Cengal is a place where students can buy food and drinks. It is located in Kolej Kediaman Cengal, UPM.',
     operatingHours: '8:00 AM - 10:00 PM',
     contact: '012-3456789',
+    email: 'email@gmail.com'
   ),
   Place(
     type: 'Faculty',
     name: 'Faculty of Computing',
     image: 'assets/images/faculty/FacultyOfComputing.jpg',
     operatingHours: '8:00 AM - 10:00 PM',
-    contact: '012-3456789',
+    contact: '+6075538827',
+    email: 'computing@utm.my',
+    facebookLink: 'https://www.facebook.com/computing.utm/',
+    instagramLink: 'https://www.instagram.com/computing.utm/',
     location: 'Universiti Teknologi Malaysia, Johor',
     upcomingEvents: [
       Event(

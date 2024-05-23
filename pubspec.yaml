@@ -38,6 +38,8 @@ dependencies:
   flutter_map: ^6.1.0
   latlong2: ^0.9.1
   flutter_map_cancellable_tile_provider: ^2.0.0
+  phosphor_flutter: ^2.1.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,7 @@ flutter:
     - assets/images/facility/
     - assets/images/faculty/
     - assets/images/faculty/event/
+    - assets/vectors/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
