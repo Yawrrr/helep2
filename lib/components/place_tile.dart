@@ -9,11 +9,11 @@ class PlaceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
       margin: const EdgeInsets.only(bottom: 20),
+      elevation: 0,
+      color: null,
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
-        //later change to open detail page
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => PlaceDetailPage(place: place)));
         },

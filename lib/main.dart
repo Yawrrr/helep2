@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:helep2/models/place.dart';
 import 'package:helep2/pages/home.dart';
-import 'package:helep2/pages/place_detail_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/' :(context) => HomePage(),
+        '/' :(context) => const HomePage(),
       },
     );
   }

@@ -8,9 +8,10 @@ allprojects {
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
+    if (project.name.contains('url_launcher_android')) {
+        project.evaluationDependsOn(':app')
+        project.buildDir = rootProject.buildDir
+    }
 }
 
 tasks.register("clean", Delete) {

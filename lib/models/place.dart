@@ -42,12 +42,13 @@ List<Place> places = [
     facebookLink: 'https://www.facebook.com/computing.utm/',
     instagramLink: 'https://www.instagram.com/computing.utm/',
     location: 'Universiti Teknologi Malaysia, Johor',
+    coordinates: const LatLng(1.5641781309096954, 103.63801567237049),
     upcomingEvents: [
       Event(
           name: 'Hackathon',
           description:
               'A hackathon is a design sprint-like event in which computer programmers and others involved in software development, including graphic designers, interface designers, project managers, domain experts, and others collaborate intensively on software projects.',
-          image: 'assets/images/events/hackathon.png',
+          image: 'assets/images/faculty/event/hackathon.png',
           location: 'Faculty of Computing, UTM Johor',
           date: '12/12/2021',
           time: '9:00 AM - 5:00 PM',
@@ -56,7 +57,7 @@ List<Place> places = [
           name: 'Workshop on Flutter',
           description:
               'Flutter is an open-source UI software development kit created by Google. It is used to develop applications for Android, iOS, Linux, Mac, Windows, Google Fuchsia, and the web from a single codebase.',
-          image: 'assets/images/events/FlutterWorkshop.png',
+          image: 'assets/images/faculty/event/FlutterWorkshop.jpg',
           location: 'Faculty of Computing, UTM Johor',
           date: '15/12/2021',
           time: '9:00 AM - 5:00 PM',
@@ -93,7 +94,7 @@ class Place {
   final String instagramLink;
   List<Event> upcomingEvents;
   final List<Stall> stalls;
-  final LatLng coordinates = const LatLng(0, 0);
+  final LatLng coordinates;
 
   Place(
       {required this.type,
@@ -108,7 +109,8 @@ class Place {
       this.facebookLink = '',
       this.instagramLink = '',
       this.upcomingEvents = const [],
-      this.stalls = const []});
+      this.stalls = const [],
+      this.coordinates = const LatLng(0, 0)});
 }
 
 class Event {
